@@ -23,6 +23,7 @@
             pkgconfig
 
             rust-bin.stable.latest.default
+            cargo-nextest
           ];
         };
       }
