@@ -7,8 +7,7 @@ edition = "2021"
 
 [dependencies]
 itertools = { version = "0.10" }
-# nom = { version = "7.1" }
-# indextree = { version = "4.5" }
+nom = { version = "7.1" }
 
 [dev-dependencies]
 pretty_assertions = {version = "1.3" }
