@@ -3,7 +3,7 @@ use itertools::Itertools;
 type Calorie = usize;
 type CaloriesCarriedByElf = Vec<Calorie>;
 
-fn parse_calories_carried_by_elves<'a>(calorie_list: &'a str) -> Vec<CaloriesCarriedByElf> {
+fn parse_calories_carried_by_elves(calorie_list: &str) -> Vec<CaloriesCarriedByElf> {
     calorie_list
         .split("\n\n")
         .map(|calories_carried_by_elf| {
@@ -15,7 +15,7 @@ fn parse_calories_carried_by_elves<'a>(calorie_list: &'a str) -> Vec<CaloriesCar
         .collect()
 }
 
-fn part1_most_calories_carried(calorie_list: &Vec<CaloriesCarriedByElf>) -> Calorie {
+fn part1_most_calories_carried(calorie_list: &[CaloriesCarriedByElf]) -> Calorie {
     calorie_list
         .iter()
         .map(|calorie_carried_by_elf| calorie_carried_by_elf.iter().sum::<Calorie>())
@@ -23,7 +23,7 @@ fn part1_most_calories_carried(calorie_list: &Vec<CaloriesCarriedByElf>) -> Calo
         .unwrap()
 }
 
-fn part2_most_calories_carried_by_3_elves(calorie_list: &Vec<CaloriesCarriedByElf>) -> Calorie {
+fn part2_most_calories_carried_by_3_elves(calorie_list: &[CaloriesCarriedByElf]) -> Calorie {
     calorie_list
         .iter()
         .map(|calorie_carried_by_elf| calorie_carried_by_elf.iter().sum::<Calorie>())
@@ -35,7 +35,7 @@ fn part2_most_calories_carried_by_3_elves(calorie_list: &Vec<CaloriesCarriedByEl
 
 fn main() {
     let calories_carried_by_elves = include_str!("../../data/day01.txt");
-    let parsed_input = parse_calories_carried_by_elves(&calories_carried_by_elves);
+    let parsed_input = parse_calories_carried_by_elves(calories_carried_by_elves);
 
     println!(
         "Day 01 - Part 01: {}",

@@ -55,21 +55,15 @@ impl Part1Round {
 }
 
 fn parse_part1_input(rounds: &str) -> Vec<Part1Round> {
-    rounds
-        .lines()
-        .into_iter()
-        .map(|round| parse_part1_round(round))
-        .collect()
+    rounds.lines().into_iter().map(parse_part1_round).collect()
 }
 
 fn parse_part1_round(round: &str) -> Part1Round {
-    match round.split(" ").collect::<Vec<&str>>()[..] {
-        [p1, p2] => {
-            return Part1Round {
-                opponent: string_to_hand(p1),
-                player: string_to_hand(p2),
-            };
-        }
+    match round.split(' ').collect::<Vec<&str>>()[..] {
+        [p1, p2] => Part1Round {
+            opponent: string_to_hand(p1),
+            player: string_to_hand(p2),
+        },
         _ => {
             panic!("Invalid input")
         }
@@ -85,7 +79,7 @@ fn string_to_hand(hand: &str) -> Hand {
     }
 }
 
-fn part1_total_score(rounds: &Vec<Part1Round>) -> usize {
+fn part1_total_score(rounds: &[Part1Round]) -> usize {
     rounds.iter().map(|round| round.score()).sum()
 }
 
@@ -97,21 +91,15 @@ struct Part2Round {
 }
 
 fn parse_part2_input(rounds: &str) -> Vec<Part2Round> {
-    rounds
-        .lines()
-        .into_iter()
-        .map(|round| parse_part2_round(round))
-        .collect()
+    rounds.lines().into_iter().map(parse_part2_round).collect()
 }
 
 fn parse_part2_round(round: &str) -> Part2Round {
-    match round.split(" ").collect::<Vec<&str>>()[..] {
-        [p1, p2] => {
-            return Part2Round {
-                opponent: string_to_hand(p1),
-                required_outcome: string_to_outcome(p2),
-            };
-        }
+    match round.split(' ').collect::<Vec<&str>>()[..] {
+        [p1, p2] => Part2Round {
+            opponent: string_to_hand(p1),
+            required_outcome: string_to_outcome(p2),
+        },
         _ => {
             panic!("Invalid input")
         }
@@ -147,7 +135,7 @@ impl Part2Round {
     }
 }
 
-fn part2_total_score(rounds: &Vec<Part2Round>) -> usize {
+fn part2_total_score(rounds: &[Part2Round]) -> usize {
     rounds.iter().map(|round| round.score()).sum()
 }
 
