@@ -40,6 +40,16 @@ pub struct Matrix<T> {
 }
 
 impl<T> Matrix<T> {
+    pub fn new((rows, cols): (usize, usize)) -> Self
+    where
+        T: Default + Clone,
+    {
+        Matrix {
+            data: vec![vec![T::default(); cols]; rows],
+            rows,
+            cols,
+        }
+    }
     pub fn number_of_rows(&self) -> usize {
         self.rows
     }
@@ -107,6 +117,18 @@ impl<T> Matrix<T> {
                 }
             }
         }
+    }
+
+    pub fn neighbouring_indices(&self, index: Index) -> impl Iterator<Item = Index> + '_ {
+        [
+            Direction::Left,
+            Direction::Right,
+            Direction::Top,
+            Direction::Bottom,
+        ]
+        .iter()
+        .filter_map(move |d| self.next_in_direction(index.into(), *d))
+        .map(|i| i.into())
     }
 
     pub fn elements_in_direction(
